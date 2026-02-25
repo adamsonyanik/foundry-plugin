@@ -77,7 +77,8 @@ const doubleFlipImagePopout = () => {
 
     let windowContent = popOut.querySelector("section.window-content") as HTMLElement;
     windowContent.style.flexBasis = "content";
-    windowContent.style.flex = "none";
+    windowContent.style.flexGrow = "0";
+    windowContent.style.flexShrink = "1";
 
     const clone = windowContent.cloneNode(true);
     windowContent.style.rotate = "180deg";
@@ -189,6 +190,6 @@ Hooks.on("renderImagePopout", (app, html: HTMLElement, context, o) => {
             img.style.height = "100%";
 
             app.window.content.children[0].style.aspectRatio = "" + img.naturalWidth / img.naturalHeight;
-        }, 100);
+        }, 120);
     };
 });
