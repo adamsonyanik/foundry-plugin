@@ -3,13 +3,13 @@ import manifest from "../module.json";
 const socketName = `module.` + manifest.id;
 
 function getNextPopout() {
-    const imagePopout = document.querySelector(".image-popout") as HTMLButtonElement;
+    const imagePopout = [...document.querySelectorAll(".image-popout")].at(-1) as HTMLElement;
     if (imagePopout) return imagePopout;
 
-    const legacyImagePopout = document.querySelector(".image-popout") as HTMLButtonElement;
+    const legacyImagePopout = [...document.querySelectorAll(".image-popout")].at(-1) as HTMLElement;
     if (legacyImagePopout) return legacyImagePopout;
 
-    const journalPopout = document.querySelector(".journal-sheet") as HTMLButtonElement;
+    const journalPopout = [...document.querySelectorAll(".journal-sheet")].at(-1) as HTMLElement;
     if (journalPopout) return journalPopout;
 }
 
@@ -115,13 +115,22 @@ Hooks.once("ready", () => {
 
             let cmd;
 
-            if (e.key == "Escape") cmd = "close";
+            if (e.key == "Escape" || e.key == "Backspace") cmd = "close";
             if (e.key == "ArrowRight") cmd = "rotate";
             if (e.key == "ArrowUp") cmd = "doubleFlip";
 
             if (cmd) {
-                if (["close"].includes(cmd)) commands[cmd]();
                 getGame().socket!.emit(socketName, cmd);
+            }
+        });
+
+        document.addEventListener("contextmenu", (event) => {
+            const tgt = event.target as HTMLImageElement;
+            if (tgt && tgt.tagName === "IMG") {
+                // Ignore Token HUD (status effects), Sidebar, and Buttons
+                if (tgt.closest("#token-hud") || tgt.closest("#sidebar") || tgt.closest("button")) return;
+
+                new foundry.applications.apps.ImagePopout({ src: tgt.src, shareable: true }).shareImage();
             }
         });
     }
@@ -180,6 +189,6 @@ Hooks.on("renderImagePopout", (app, html: HTMLElement, context, o) => {
             img.style.height = "100%";
 
             app.window.content.children[0].style.aspectRatio = "" + img.naturalWidth / img.naturalHeight;
-        }, 1);
+        }, 100);
     };
 });
