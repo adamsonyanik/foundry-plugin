@@ -51,7 +51,6 @@ const rotateImagePopout = () => {
 
     if (isImg) {
         const img = windowContent as HTMLImageElement;
-        console.log("is img");
         if (Math.round(rotation) == 90 || Math.round(rotation) == 270) {
             img.parentElement.style.aspectRatio = "" + img.naturalHeight / img.naturalWidth;
 
@@ -72,13 +71,32 @@ const rotateImagePopout = () => {
     }
 };
 
+const doubleFlipImagePopout = () => {
+    const popOut = getNextPopout();
+    if (!popOut) return;
+
+    let windowContent = popOut.querySelector("section.window-content") as HTMLElement;
+    windowContent.style.flexBasis = "content";
+    windowContent.style.flexGrow = "0";
+
+    const clone = windowContent.cloneNode(true);
+    windowContent.style.rotate = "180deg";
+
+    windowContent.parentElement.style.flexDirection = "row";
+    windowContent.parentElement.style.justifyContent = "center";
+    windowContent.parentElement.style.gap = "2em";
+    windowContent.parentElement.appendChild(clone);
+    console.log(windowContent.parentElement);
+};
+
 function getGame() {
     return game as Game;
 }
 
 const commands = {
     close: closeImagePopout,
-    rotate: rotateImagePopout
+    rotate: rotateImagePopout,
+    doubleFlip: doubleFlipImagePopout
 };
 
 let ctrlPressed = false;
@@ -97,8 +115,9 @@ Hooks.once("ready", () => {
 
             let cmd;
 
-            if (e.key == "p") cmd = "close";
-            if (e.key == "ü") cmd = "rotate";
+            if (e.key == "Escape") cmd = "close";
+            if (e.key == "ArrowRight") cmd = "rotate";
+            if (e.key == "ArrowUp") cmd = "doubleFlip";
 
             if (cmd) {
                 if (["close"].includes(cmd)) commands[cmd]();

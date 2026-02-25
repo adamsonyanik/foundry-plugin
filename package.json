@@ -11,6 +11,7 @@
     "vite": "^5.0.2"
   },
   "devDependencies": {
-    "fvtt-types": "npm:@league-of-foundry-developers/foundry-vtt-types@^9.268.0"
+    "fvtt-types": "npm:@league-of-foundry-developers/foundry-vtt-types@^9.268.0",
+    "vite-plugin-zip-pack": "^1.2.4"
   }
 }

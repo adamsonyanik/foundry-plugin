@@ -1,7 +1,6 @@
 import copy from "rollup-plugin-copy";
 import { defineConfig } from "vite";
-
-const modulePath = "C:/Users/yadam/AppData/Local/FoundryVTT/Data/modules/foundry-plugin/";
+import zipPack from "vite-plugin-zip-pack";
 
 export default defineConfig({
     build: {
@@ -9,7 +8,7 @@ export default defineConfig({
         rollupOptions: {
             input: "src/ts/module.ts",
             output: {
-                dir: modulePath + "scripts",
+                dir: "dist/scripts",
                 entryFileNames: "module.js",
                 format: "es"
             }
@@ -17,8 +16,12 @@ export default defineConfig({
     },
     plugins: [
         copy({
-            targets: [{ src: "src/module.json", dest: modulePath }],
+            targets: [
+                { src: "src/module.json", dest: "dist" },
+                { src: "dist/*", dest: "C:/Users/yadam/AppData/Local/FoundryVTT/Data/modules/foundry-plugin/" }
+            ],
             hook: "writeBundle"
-        })
+        }),
+        zipPack({ outDir: ".", outFileName: "module.zip" })
     ]
 });
