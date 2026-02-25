@@ -175,7 +175,7 @@ Hooks.on("renderImagePopout", (app, html: HTMLElement, context, o) => {
             app.window.content.children[0].style.objectFit = "contain";
             app.window.content.children[0].style.width = "auto";
             app.window.content.children[0].style.height = "auto";
-            app.window.content.children[0].style.flexGrow = "0";
+            //app.window.content.children[0].style.flexGrow = "0";
             app.window.content.children[0].style.display = "block";
 
             img.style.margin = "0";
