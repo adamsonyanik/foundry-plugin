@@ -141,36 +141,34 @@ Hooks.on("renderShowToPlayersDialog", (app, html: HTMLElement, context, o) => {
 
 Hooks.on("renderImagePopout", (app, html: HTMLElement, context, o) => {
     if (getGame().user!.isGM) return;
-    setTimeout(() => {
-        html.style = "";
-        html.style.width = "100%";
-        html.style.maxWidth = "100%";
-        html.style.height = "100%";
-        html.style.maxHeight = "100%";
-        html.style.left = "0";
-        html.style.right = "0";
-        html.style.bottom = "0";
-        html.style.top = "0";
-        html.style.border = "none";
-
-        app.window.content.style.padding = "0";
-        app.window.content.style.justifyContent = "center";
-        app.window.content.style.alignItems = "center";
-
-        app.window.content.children[0].style.padding = "0";
-        app.window.content.children[0].style.maxWidth = "100%";
-        app.window.content.children[0].style.maxHeight = "100%";
-        app.window.content.children[0].style.objectFit = "contain";
-        app.window.content.children[0].style.width = "auto";
-        app.window.content.children[0].style.height = "auto";
-        app.window.content.children[0].style.flexGrow = "0";
-        app.window.content.children[0].style.display = "block";
-    }, 1);
-
     const img = app.window.content.children[0].children[0];
 
     img.onload = () => {
         setTimeout(() => {
+            html.style = "";
+            html.style.width = "100%";
+            html.style.maxWidth = "100%";
+            html.style.height = "100%";
+            html.style.maxHeight = "100%";
+            html.style.left = "0";
+            html.style.right = "0";
+            html.style.bottom = "0";
+            html.style.top = "0";
+            html.style.border = "none";
+
+            app.window.content.style.padding = "0";
+            app.window.content.style.justifyContent = "center";
+            app.window.content.style.alignItems = "center";
+
+            app.window.content.children[0].style.padding = "0";
+            app.window.content.children[0].style.maxWidth = "100%";
+            app.window.content.children[0].style.maxHeight = "100%";
+            app.window.content.children[0].style.objectFit = "contain";
+            app.window.content.children[0].style.width = "auto";
+            app.window.content.children[0].style.height = "auto";
+            app.window.content.children[0].style.flexGrow = "0";
+            app.window.content.children[0].style.display = "block";
+
             img.style.margin = "0";
             img.style.position = "relative";
             img.style.transformOrigin = "center center";
