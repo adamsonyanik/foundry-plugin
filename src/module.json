@@ -1,0 +1,19 @@
+{
+    "id": "foundry-plugin",
+    "title": "Foundry TS",
+    "description": "A simple module using TypeScript",
+    "authors": [
+        {
+            "name": "Yanik Adamson"
+        }
+    ],
+    "version": "1.0.1",
+    "compatibility": {
+        "minimum": "10",
+        "verified": "12.330"
+    },
+    "esmodules": [
+        "scripts/module.js"
+    ],
+    "socket": true
+}

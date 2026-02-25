@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "build": "vite build --emptyOutDir"
+  },
+  "dependencies": {
+    "eslint": "^8.54.0",
+    "prettier": "^3.8.1",
+    "rollup-plugin-copy": "^3.4.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1",
+    "vite": "^5.0.2"
+  },
+  "devDependencies": {
+    "fvtt-types": "npm:@league-of-foundry-developers/foundry-vtt-types@^9.268.0"
+  }
+}
