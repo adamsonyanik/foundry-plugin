@@ -18,6 +18,7 @@ export default defineConfig({
         copy({
             targets: [
                 { src: "src/module.json", dest: "dist" },
+                { src: "src/languages", dest: "dist" },
                 { src: "dist/*", dest: "C:/Users/yadam/AppData/Local/FoundryVTT/Data/modules/foundry-plugin/" }
             ],
             hook: "writeBundle"

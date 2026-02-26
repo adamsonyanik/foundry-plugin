@@ -7,13 +7,20 @@
             "name": "Yanik Adamson"
         }
     ],
-    "version": "1.0.3",
+    "version": "1.1.0",
     "compatibility": {
         "minimum": "10",
         "verified": "12.330"
     },
     "esmodules": [
         "scripts/module.js"
+    ],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "languages/en.json"
+        }
     ],
     "socket": true,
     "manifest": "https://github.com/adamsonyanik/foundry-plugin/raw/refs/heads/master/src/module.json",
