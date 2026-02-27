@@ -18,9 +18,13 @@ export const registerTextFieldClearOnRightClick = () => {
 export const registerTextFieldSelectOnRender = () => {
     Hooks.on("activateApplicationV2", selectTextField);
     Hooks.on("renderApplicationV2", selectTextField);
+};
+
+export const registerTextFieldSelectOnOpenSidebar = () => {
     Hooks.on("collapseSidebar", (a, b: boolean) => {
         if (!b) selectTextField(a);
     });
+    Hooks.on("changeSidebarTab", selectTextField);
 };
 
 const selectTextField = (app: Application) => {

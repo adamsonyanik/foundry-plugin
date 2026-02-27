@@ -7,7 +7,8 @@ export const enable_settings = [
     "showImageToPlayersOnRightClick",
     "skipShowToPlayersDialog",
     "clearTextfieldOnRightClick",
-    "selectTextfieldOnRender"
+    "selectTextfieldOnRender",
+    "selectTextfieldOnOpenSidebar"
 ] as const;
 
 function toReadableString(s: string) {

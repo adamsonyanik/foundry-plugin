@@ -1,6 +1,7 @@
 import manifest from "../module.json";
 import {
     registerTextFieldClearOnRightClick,
+    registerTextFieldSelectOnOpenSidebar,
     registerTextFieldSelectOnRender
 } from "./text-field-select-all-on-right-click";
 import { registerSkipShowToPlayersDialog } from "./skip-show-to-players-dialog";
@@ -32,6 +33,7 @@ function main() {
 
         if (getSettings("clearTextfieldOnRightClick")) registerTextFieldClearOnRightClick();
         if (getSettings("selectTextfieldOnRender")) registerTextFieldSelectOnRender();
+        if (getSettings("selectTextfieldOnOpenSidebar")) registerTextFieldSelectOnOpenSidebar();
     });
 
     Hooks.once("ready", () => {
