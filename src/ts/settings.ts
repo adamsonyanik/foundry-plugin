@@ -35,4 +35,34 @@ export const registerSettings = () => {
             default: true,
             requiresReload: true
         });
+
+    game.settings.register(manifest.id, "compassInsetHeight", {
+        name: toReadableString("compassInsetHeight"),
+        hint: "",
+        scope: "world",
+        config: true,
+        type: Number,
+        default: 5,
+        requiresReload: true
+    });
+
+    game.settings.register(manifest.id, "compassInsetWidth", {
+        name: toReadableString("compassInsetWidth"),
+        hint: "",
+        scope: "world",
+        config: true,
+        type: Number,
+        default: 2.5,
+        requiresReload: true
+    });
+
+    game.settings.register(manifest.id, "compassSize", {
+        name: toReadableString("compassSize"),
+        hint: "",
+        scope: "world",
+        config: true,
+        type: Number,
+        default: 10,
+        requiresReload: true
+    });
 };

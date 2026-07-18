@@ -1,4 +1,5 @@
 import { getGame } from "./module";
+import { getSettings } from "./settings";
 
 export const registerFullscreenImagePopout = () => {
     Hooks.on("renderImagePopout", (app, html: HTMLElement, context, o) => {
@@ -47,6 +48,26 @@ export const registerFullscreenImagePopout = () => {
             setImg(cW, cH, 0, div);
         };
     });
+};
+
+export const toggleCompass = () => {
+    const compass = document.getElementById("compass");
+
+    if (!compass) {
+        const insetH = getSettings("compassInsetHeight") + "%";
+        const insetW = getSettings("compassInsetWidth") + "%";
+        const size = getSettings("compassSize") + "%";
+
+        const newCompass = document.createElement("img");
+        newCompass.id = "compass";
+        newCompass.style.position = "absolute";
+        newCompass.style.left = insetW;
+        newCompass.style.top = insetH;
+        newCompass.style.width = size;
+        newCompass.style.zIndex = String(Number.MAX_SAFE_INTEGER);
+        newCompass.src = "modules/foundry-plugin/assets/compass.png";
+        document.getElementById("interface")!.appendChild(newCompass);
+    } else compass.remove();
 };
 
 export const closeImagePopout = () => {

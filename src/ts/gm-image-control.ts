@@ -1,4 +1,4 @@
-import { closeImagePopout, doubleFlipImagePopout, rotateImagePopout } from "./image-popout";
+import { closeImagePopout, doubleFlipImagePopout, rotateImagePopout, toggleCompass } from "./image-popout";
 import { getGame, moduleId } from "./module";
 
 export const registerImagePopoutControls = () => {
@@ -13,6 +13,7 @@ export const registerImagePopoutControls = () => {
                 if (e.key == "Escape" || e.key == "Backspace") cmd = "close";
                 if (e.key == "ArrowRight") cmd = "rotate";
                 if (e.key == "ArrowUp") cmd = "doubleFlip";
+                if (e.code == "KeyC") cmd = "toggleCompass";
 
                 if (cmd) {
                     getGame().socket!.emit(moduleId, cmd);
@@ -23,8 +24,9 @@ export const registerImagePopoutControls = () => {
         const commands = {
             close: closeImagePopout,
             rotate: rotateImagePopout,
-            doubleFlip: doubleFlipImagePopout
+            doubleFlip: doubleFlipImagePopout,
+            toggleCompass: toggleCompass
         };
-        getGame().socket!.on(moduleId, (cmd) => commands[cmd]());
+        getGame().socket!.on(moduleId, (cmd: keyof typeof commands) => commands[cmd]());
     });
 };
